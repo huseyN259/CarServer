@@ -1,0 +1,110 @@
+﻿<Window x:Class="CarClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CarClient"
+        mc:Ignorable="d"
+        Title="" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="requestGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <ComboBox Name="cbCommand" 
+                      materialDesign:HintAssist.Hint="Command"
+                      Margin="10"
+                      Width="100"
+                      Grid.ColumnSpan="6" SelectionChanged="cbCommand_SelectionChanged">
+            </ComboBox>
+
+            <TextBox
+                Grid.Row="1"
+                Name="txtId"
+                materialDesign:HintAssist.Hint="Id"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                Text="{Binding Car.Id,Mode=TwoWay}"
+                Margin="5"/>
+
+            <TextBox
+                Grid.Row="1"
+                Grid.Column="1"
+                Name="txtMake"
+                materialDesign:HintAssist.Hint="Make"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                IsEnabled="{Binding IsTextBoxAvialable}"
+                Text="{Binding Car.Make,Mode=TwoWay}"
+                Margin="5"/>
+
+            <TextBox
+                Grid.Row="1"
+                Grid.Column="2"
+                Name="txtModel"
+                materialDesign:HintAssist.Hint="Model"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                Text="{Binding Car.Model,Mode=TwoWay}"
+                IsEnabled="{Binding IsTextBoxAvialable}"
+                Margin="5"/>
+
+            <TextBox
+                Grid.Row="1"
+                Grid.Column="3"
+                Name="txtYear"
+                materialDesign:HintAssist.Hint="Year"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                Text="{Binding Car.Year,Mode=TwoWay}"
+                IsEnabled="{Binding IsTextBoxAvialable}"
+                Margin="5"/>
+
+            <TextBox
+                Grid.Row="1"
+                Grid.Column="4"
+                Name="txtVIN"
+                materialDesign:HintAssist.Hint="VIN"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                Text="{Binding Car.VIN,Mode=TwoWay}"
+                IsEnabled="{Binding IsTextBoxAvialable}"
+                Margin="5"/>
+
+            <TextBox
+                Grid.Row="1"
+                Grid.Column="5"
+                Name="txtColor"
+                materialDesign:HintAssist.Hint="Color"
+                Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                Text="{Binding Car.Color,Mode=TwoWay}"
+                IsEnabled="{Binding IsTextBoxAvialable}"
+                Margin="5"/>
+
+            <Button
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                Grid.ColumnSpan="6"
+                Grid.Row="2"
+                Width="140"
+                Content="Send request" Click="Button_Click"/>
+
+        </Grid>
+
+
+        <DataGrid x:Name="CarList" Grid.Row="1" ItemsSource="{Binding Cars}" CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True"> 
+
+        </DataGrid>
+    </Grid>
+</Window>
